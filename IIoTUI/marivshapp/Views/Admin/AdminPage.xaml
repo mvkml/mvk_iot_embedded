@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MariVshApp.ViewModels.Admin"
+             x:Class="MariVshApp.Views.Admin.AdminPage"
+             Title="Admin"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#1E1E1E}">
+
+    <!-- BindingContext is set in code-behind via dependency injection -->
+
+    <Grid x:DataType="vm:AdminViewModel">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Top bar: User name and Logout button in top-right corner -->
+        <VerticalStackLayout
+            Grid.Row="0"
+            HorizontalOptions="End"
+            Padding="20,20,20,0"
+            Spacing="4">
+
+            <!-- User Name -->
+            <Label
+                Text="{Binding UserName}"
+                FontSize="16"
+                FontAttributes="Bold"
+                HorizontalOptions="End"
+                TextColor="{AppThemeBinding Light=#333333, Dark=White}" />
+
+            <!-- Logout Button -->
+            <Button
+                Text="Logout"
+                Command="{Binding LogoutCommand}"
+                FontSize="14"
+                HeightRequest="36"
+                MinimumWidthRequest="80"
+                BackgroundColor="#E53935"
+                TextColor="White"
+                CornerRadius="6"
+                HorizontalOptions="End" />
+        </VerticalStackLayout>
+
+        <!-- Center: Admin Dashboard title and welcome message -->
+        <VerticalStackLayout
+            Grid.Row="1"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Spacing="16"
+            Padding="30">
+
+            <Label
+                Text="Admin Dashboard"
+                FontSize="36"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                TextColor="{AppThemeBinding Light=#333333, Dark=White}" />
+
+            <Label
+                Text="{Binding WelcomeMessage}"
+                FontSize="20"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                TextColor="{AppThemeBinding Light=#6200EE, Dark=#BB86FC}" />
+
+        </VerticalStackLayout>
+
+    </Grid>
+
+</ContentPage>

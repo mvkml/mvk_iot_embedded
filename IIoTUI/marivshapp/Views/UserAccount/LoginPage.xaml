@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MariVshApp.ViewModels.UserAccount"
+             x:Class="MariVshApp.Views.UserAccount.LoginPage"
+             Title="Login"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#1E1E1E}">
+
+    <ScrollView x:DataType="vm:LoginViewModel">
+        <VerticalStackLayout
+            Spacing="20"
+            Padding="30"
+            VerticalOptions="Center"
+            MaximumWidthRequest="400">
+
+            <Label
+                Text="Login"
+                FontSize="32"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                TextColor="{AppThemeBinding Light=#333333, Dark=White}" />
+
+            <!-- Login with User ID + Password -->
+            <Entry
+                Placeholder="User ID (phone number or email)"
+                Text="{Binding UserId}"
+                FontSize="16"
+                Keyboard="Email"
+                ClearButtonVisibility="WhileEditing"
+                ReturnType="Next" />
+
+            <Entry
+                Placeholder="Password"
+                Text="{Binding Password}"
+                FontSize="16"
+                IsPassword="True"
+                ReturnType="Done" />
+
+            <Button
+                Text="Login"
+                Command="{Binding LoginCommand}"
+                FontSize="18"
+                HeightRequest="50"
+                BackgroundColor="#6200EE"
+                TextColor="White"
+                CornerRadius="8" />
+
+            <!-- Divider -->
+            <Label
+                Text="— OR —"
+                FontSize="14"
+                HorizontalOptions="Center"
+                TextColor="{AppThemeBinding Light=#999999, Dark=#666666}" />
+
+            <!-- Login with PIN -->
+            <Entry
+                Placeholder="4-digit PIN"
+                Text="{Binding Pin}"
+                FontSize="16"
+                Keyboard="Numeric"
+                IsPassword="True"
+                MaxLength="4"
+                HorizontalOptions="Center"
+                WidthRequest="160"
+                ReturnType="Done" />
+
+            <Button
+                Text="Login with PIN"
+                Command="{Binding LoginByPinCommand}"
+                FontSize="18"
+                HeightRequest="50"
+                BackgroundColor="#03DAC5"
+                TextColor="White"
+                CornerRadius="8" />
+
+            <!-- Message -->
+            <Label
+                Text="{Binding Message}"
+                TextColor="{Binding MessageColor}"
+                FontSize="16"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center" />
+
+            <!-- Navigate to Sign Up -->
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="4">
+                <Label
+                    Text="Don't have an account?"
+                    FontSize="14"
+                    TextColor="{AppThemeBinding Light=#666666, Dark=#AAAAAA}"
+                    VerticalOptions="Center" />
+                <Label
+                    Text="Sign Up"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    TextColor="#6200EE"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSignUpTapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

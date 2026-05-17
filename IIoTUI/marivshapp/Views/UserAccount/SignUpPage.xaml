@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MariVshApp.ViewModels.UserAccount"
+             x:Class="MariVshApp.Views.UserAccount.SignUpPage"
+             Title="Sign Up"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#1E1E1E}">
+
+    <ScrollView x:DataType="vm:SignUpViewModel">
+        <VerticalStackLayout
+            Spacing="16"
+            Padding="30"
+            VerticalOptions="Center"
+            MaximumWidthRequest="400">
+
+            <Label
+                Text="Sign Up"
+                FontSize="32"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                TextColor="{AppThemeBinding Light=#333333, Dark=White}" />
+
+            <!-- User ID: phone number or email -->
+            <Entry
+                Placeholder="User ID (phone number or email)"
+                Text="{Binding UserId}"
+                FontSize="16"
+                Keyboard="Email"
+                ClearButtonVisibility="WhileEditing"
+                ReturnType="Next" />
+
+            <!-- Display name -->
+            <Entry
+                Placeholder="Name"
+                Text="{Binding Name}"
+                FontSize="16"
+                ClearButtonVisibility="WhileEditing"
+                ReturnType="Next" />
+
+            <!-- Description (optional) -->
+            <Entry
+                Placeholder="Description (optional)"
+                Text="{Binding Description}"
+                FontSize="16"
+                ClearButtonVisibility="WhileEditing"
+                ReturnType="Next" />
+
+            <!-- Account Type -->
+            <Label
+                Text="Account Type"
+                FontSize="14"
+                TextColor="{AppThemeBinding Light=#666666, Dark=#AAAAAA}"
+                Margin="0,4,0,0" />
+            <Picker
+                Title="Select Account Type"
+                ItemsSource="{Binding UserTypeOptions}"
+                SelectedItem="{Binding SelectedUserType}"
+                FontSize="16" />
+
+            <!-- Password -->
+            <Entry
+                Placeholder="Password"
+                Text="{Binding Password}"
+                FontSize="16"
+                IsPassword="True"
+                ReturnType="Next" />
+
+            <!-- Confirm Password -->
+            <Entry
+                Placeholder="Confirm Password"
+                Text="{Binding ConfirmPassword}"
+                FontSize="16"
+                IsPassword="True"
+                ReturnType="Next" />
+
+            <!-- 4-digit PIN -->
+            <Entry
+                Placeholder="4-digit PIN"
+                Text="{Binding Pin}"
+                FontSize="16"
+                Keyboard="Numeric"
+                IsPassword="True"
+                MaxLength="4"
+                ReturnType="Next" />
+
+            <!-- Confirm PIN -->
+            <Entry
+                Placeholder="Confirm PIN"
+                Text="{Binding ConfirmPin}"
+                FontSize="16"
+                Keyboard="Numeric"
+                IsPassword="True"
+                MaxLength="4"
+                ReturnType="Done" />
+
+            <Button
+                Text="Sign Up"
+                Command="{Binding SignUpCommand}"
+                FontSize="18"
+                HeightRequest="50"
+                BackgroundColor="#6200EE"
+                TextColor="White"
+                CornerRadius="8"
+                Margin="0,8,0,0" />
+
+            <Label
+                Text="{Binding Message}"
+                TextColor="{Binding MessageColor}"
+                FontSize="16"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center" />
+
+            <Label
+                Text="Go to Login →"
+                FontSize="16"
+                FontAttributes="Bold"
+                TextColor="#6200EE"
+                HorizontalOptions="Center"
+                IsVisible="{Binding IsSignUpSuccess}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoToLoginCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MariVshApp.ViewModels.UserAccount"
+             x:Class="MariVshApp.Views.UserAccount.LoginPage"
+             Title="Login"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#1E1E1E}">
+
+    <!-- BindingContext is set in code-behind via dependency injection -->
+
+    <!-- Main layout: centers the login form vertically and horizontally -->
+    <ScrollView x:DataType="vm:LoginViewModel">
+        <VerticalStackLayout
+            Spacing="20"
+            Padding="30"
+            VerticalOptions="Center"
+            MaximumWidthRequest="400">
+
+            <!-- Page Title -->
+            <Label
+                Text="Login"
+                FontSize="32"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                TextColor="{AppThemeBinding Light=#333333, Dark=White}" />
+
+            <!-- User ID Entry -->
+            <Entry
+                Placeholder="User ID"
+                Text="{Binding UserId}"
+                FontSize="16"
+                ClearButtonVisibility="WhileEditing"
+                ReturnType="Next" />
+
+            <!-- Password Entry (characters are hidden) -->
+            <Entry
+                Placeholder="Password"
+                Text="{Binding Password}"
+                FontSize="16"
+                IsPassword="True"
+                ReturnType="Done" />
+
+            <!-- Login Button -->
+            <Button
+                Text="Login"
+                Command="{Binding LoginCommand}"
+                FontSize="18"
+                HeightRequest="50"
+                BackgroundColor="#6200EE"
+                TextColor="White"
+                CornerRadius="8" />
+
+            <!-- Message Label (shows success or error messages) -->
+            <Label
+                Text="{Binding Message}"
+                TextColor="{Binding MessageColor}"
+                FontSize="16"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center" />
+
+            <!-- Navigate to Sign Up page -->
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="4">
+                <Label
+                    Text="Don't have an account?"
+                    FontSize="14"
+                    TextColor="{AppThemeBinding Light=#666666, Dark=#AAAAAA}"
+                    VerticalOptions="Center" />
+                <Label
+                    Text="Sign Up"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    TextColor="#6200EE"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSignUpTapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

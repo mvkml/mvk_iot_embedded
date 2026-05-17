@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MariVshApp.ViewModels.UserAccount"
+             x:Class="MariVshApp.Views.UserAccount.SignUpPage"
+             Title="Sign Up"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#1E1E1E}">
+
+    <!-- BindingContext is set in code-behind via dependency injection -->
+
+    <!-- Scrollable layout to handle many fields -->
+    <ScrollView x:DataType="vm:SignUpViewModel">
+        <VerticalStackLayout
+            Spacing="16"
+            Padding="30"
+            VerticalOptions="Center"
+            MaximumWidthRequest="400">
+
+            <!-- Page Title -->
+            <Label
+                Text="Sign Up"
+                FontSize="32"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                TextColor="{AppThemeBinding Light=#333333, Dark=White}" />
+
+            <!-- Phone Number -->
+            <Entry
+                Placeholder="Phone Number"
+                Text="{Binding PhoneNumber}"
+                FontSize="16"
+                Keyboard="Telephone"
+                ClearButtonVisibility="WhileEditing"
+                ReturnType="Next" />
+
+            <!-- First Name -->
+            <Entry
+                Placeholder="First Name"
+                Text="{Binding FirstName}"
+                FontSize="16"
+                ClearButtonVisibility="WhileEditing"
+                ReturnType="Next" />
+
+            <!-- Last Name -->
+            <Entry
+                Placeholder="Last Name"
+                Text="{Binding LastName}"
+                FontSize="16"
+                ClearButtonVisibility="WhileEditing"
+                ReturnType="Next" />
+
+            <!-- Email ID -->
+            <Entry
+                Placeholder="Email ID"
+                Text="{Binding Email}"
+                FontSize="16"
+                Keyboard="Email"
+                ClearButtonVisibility="WhileEditing"
+                ReturnType="Next" />
+
+            <!-- Date of Birth -->
+            <Label
+                Text="Date of Birth"
+                FontSize="14"
+                TextColor="{AppThemeBinding Light=#666666, Dark=#AAAAAA}"
+                Margin="0,4,0,0" />
+            <DatePicker
+                Date="{Binding DateOfBirth}"
+                FontSize="16" />
+
+            <!-- Gender (Male / Female) -->
+            <Label
+                Text="Gender"
+                FontSize="14"
+                TextColor="{AppThemeBinding Light=#666666, Dark=#AAAAAA}"
+                Margin="0,4,0,0" />
+            <Picker
+                Title="Select Gender"
+                ItemsSource="{Binding GenderOptions}"
+                SelectedItem="{Binding SelectedGender}"
+                FontSize="16" />
+
+            <!-- Account Type -->
+            <Label
+                Text="Account Type"
+                FontSize="14"
+                TextColor="{AppThemeBinding Light=#666666, Dark=#AAAAAA}"
+                Margin="0,4,0,0" />
+            <Picker
+                Title="Select Account Type"
+                ItemsSource="{Binding UserTypeOptions}"
+                ItemDisplayBinding="{Binding TypeName}"
+                SelectedItem="{Binding SelectedUserType}"
+                FontSize="16" />
+
+            <!-- User ID -->
+            <Entry
+                Placeholder="User ID"
+                Text="{Binding UserId}"
+                FontSize="16"
+                ClearButtonVisibility="WhileEditing"
+                ReturnType="Next" />
+
+            <!-- Password -->
+            <Entry
+                Placeholder="Password"
+                Text="{Binding Password}"
+                FontSize="16"
+                IsPassword="True"
+                ReturnType="Next" />
+
+            <!-- Confirm Password -->
+            <Entry
+                Placeholder="Confirm Password"
+                Text="{Binding ConfirmPassword}"
+                FontSize="16"
+                IsPassword="True"
+                ReturnType="Done" />
+
+            <!-- Sign Up Button -->
+            <Button
+                Text="Sign Up"
+                Command="{Binding SignUpCommand}"
+                FontSize="18"
+                HeightRequest="50"
+                BackgroundColor="#6200EE"
+                TextColor="White"
+                CornerRadius="8"
+                Margin="0,8,0,0" />
+
+            <!-- Message Label (shows success or error messages) -->
+            <Label
+                Text="{Binding Message}"
+                TextColor="{Binding MessageColor}"
+                FontSize="16"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

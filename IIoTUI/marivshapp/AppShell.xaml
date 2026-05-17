@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MariVshApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ua="clr-namespace:MariVshApp.Views.UserAccount"
+    Title="MariVshApp">
+
+    <!-- LoginPage is the startup page of the application -->
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate ua:LoginPage}"
+        Route="LoginPage" />
+
+</Shell>

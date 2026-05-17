@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -Path \"$env:LOCALAPPDATA\\\\com.companyname.marivshapp\" -ErrorAction SilentlyContinue | Select-Object FullName, Name)",
+      "PowerShell(Get-ChildItem -Path \"$env:LOCALAPPDATA\\\\com.companyname.marivshapp\" -ErrorAction SilentlyContinue | Select-Object FullName, Name, Length)",
+      "Bash(Test-Path \"C:\\\\Users\\\\mvidh\\\\AppData\\\\Local\\\\com.companyname.marivshapp\\\\marivshapp.db3\")",
+      "PowerShell(Get-ChildItem \"C:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\\\\documents\" -Recurse -Force | ForEach-Object { $_.FullName })",
+      "PowerShell(New-Item -ItemType Directory -Force \"C:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\\\\documents\\\\artifacts\\\\database\\\\sqlite\")",
+      "PowerShell(Test-Path \"$env:LOCALAPPDATA\\\\com.companyname.marivshapp\\\\marivshapp.db3\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"C:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\\\\marivshapp\\\\Data\")"
+    ]
+  }
+}

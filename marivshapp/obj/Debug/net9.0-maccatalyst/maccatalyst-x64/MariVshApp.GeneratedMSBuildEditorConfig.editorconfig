@@ -1,0 +1,73 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net9.0-maccatalyst
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = MariVshApp
+build_property.ProjectDir = C:\v\v\learn\azure\azure_ai\marivshapp\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.EffectiveAnalysisLevelStyle = 9.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/v/v/learn/azure/azure_ai/marivshapp/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[C:/v/v/learn/azure/azure_ai/marivshapp/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[C:/v/v/learn/azure/azure_ai/marivshapp/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+
+[C:/v/v/learn/azure/azure_ai/marivshapp/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+
+[C:/v/v/learn/azure/azure_ai/marivshapp/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
+
+[C:/v/v/learn/azure/azure_ai/marivshapp/Views/Admin/AdminPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.Admin.AdminPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Admin\AdminPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Admin\AdminPage.xaml
+
+[C:/v/v/learn/azure/azure_ai/marivshapp/Views/Home/HomePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.Home.HomePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Home\HomePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Home\HomePage.xaml
+
+[C:/v/v/learn/azure/azure_ai/marivshapp/Views/UserAccount/LoginPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.UserAccount.LoginPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\UserAccount\LoginPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\UserAccount\LoginPage.xaml
+
+[C:/v/v/learn/azure/azure_ai/marivshapp/Views/UserAccount/SignUpPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.UserAccount.SignUpPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\UserAccount\SignUpPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\UserAccount\SignUpPage.xaml
