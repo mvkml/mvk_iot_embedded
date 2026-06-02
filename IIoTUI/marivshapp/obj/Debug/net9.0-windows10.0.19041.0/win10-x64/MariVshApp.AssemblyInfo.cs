@@ -17,7 +17,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MariVshApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+908cbcd7944789421a3a06b1f8ffd3d2c540e749")]
 [assembly: System.Reflection.AssemblyProductAttribute("MariVshApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MariVshApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
