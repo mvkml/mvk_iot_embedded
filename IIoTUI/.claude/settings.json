@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-Process -Name \"MariVshApp\" -ErrorAction SilentlyContinue)",
+      "Bash(Get-ChildItem -Path \"C:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\\\\documents\\\\ref_projects\\\\VIKIApp\" -Recurse -File)",
+      "Bash(Select-Object FullName)",
+      "Bash(Sort-Object FullName)",
+      "Bash(Format-Table -AutoSize)",
+      "PowerShell(Start-Process dotnet -ArgumentList \"run -f net9.0-windows10.0.19041.0\" -WorkingDirectory \"c:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\\\\marivshapp\")",
+      "Bash(Stop-Process -Name \"MariVshApp\" -Force -ErrorAction SilentlyContinue)",
+      "Bash(Start-Sleep -Seconds 2)",
+      "Bash(Select-String -Pattern \"error|warning|Build succeeded|Build FAILED\")",
+      "Bash(Select-Object -First 20)",
+      "PowerShell(Start-Process dotnet -ArgumentList \"run -f net9.0-windows10.0.19041.0 --project c:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\\\\marivshapp\\\\MariVshApp.csproj\")",
+      "PowerShell(Stop-Process -Name \"MariVshApp\" -Force -ErrorAction SilentlyContinue)",
+      "PowerShell($p = Start-Process \"c:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\\\\marivshapp\\\\bin\\\\Debug\\\\net9.0-windows10.0.19041.0\\\\win10-x64\\\\MariVshApp.exe\" -PassThru; Start-Sleep -Seconds 6; \"PID: $\\($p.Id\\)\"; $p.HasExited; if \\($p.HasExited\\) { \"Exit code: $\\($p.ExitCode\\)\" })",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\\\\documents\\\\uiux\\\\uiux_marivshapp\\\\ComponentGroup\\\\v1\")",
+      "PowerShell(Stop-Process -Id 3276 -Force)",
+      "PowerShell(Stop-Process -Name \"MariVshApp\" -Force -ErrorAction SilentlyContinue; Start-Sleep -Milliseconds 500; cd \"c:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\\\\marivshapp\"; dotnet build -f net9.0-windows10.0.19041.0 2>&1 | Where-Object { $_ -match \"error CS|warning CS|Build succeeded|Error\\\\\\(s\\\\\\)|Warning\\\\\\(s\\\\\\)\" } | Select-Object -Last 10)"
+    ]
+  }
+}
