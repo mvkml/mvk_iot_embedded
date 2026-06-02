@@ -7,7 +7,23 @@
       "PowerShell(Get-ChildItem \"C:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\\\\documents\" -Recurse -Force | ForEach-Object { $_.FullName })",
       "PowerShell(New-Item -ItemType Directory -Force \"C:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\\\\documents\\\\artifacts\\\\database\\\\sqlite\")",
       "PowerShell(Test-Path \"$env:LOCALAPPDATA\\\\com.companyname.marivshapp\\\\marivshapp.db3\")",
-      "PowerShell(New-Item -ItemType Directory -Force \"C:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\\\\marivshapp\\\\Data\")"
+      "PowerShell(New-Item -ItemType Directory -Force \"C:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\\\\marivshapp\\\\Data\")",
+      "PowerShell(Test-Path \"$env:LOCALAPPDATA\\\\MariVshApp\\\\marivshapp.db3\")",
+      "PowerShell(Start-Process -FilePath \"dotnet\" -ArgumentList \"run\", \"--project\", \"marivshapp\\\\marivshapp.csproj\" -WorkingDirectory \"C:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\")",
+      "Bash(dotnet build *)",
+      "Bash(dotnet run *)",
+      "PowerShell(Stop-Process -Id 17640 -Force)",
+      "PowerShell(Start-Process \"c:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\\\\marivshapp\\\\bin\\\\Debug\\\\net9.0-windows10.0.19041.0\\\\win10-x64\\\\MariVshApp.exe\")",
+      "PowerShell(Get-ChildItem \"c:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\\\\.claude\\\\skills\" -Recurse -Filter \"SKILL.md\" -ErrorAction SilentlyContinue | ForEach-Object { Get-Content $_.FullName -TotalCount 5 })",
+      "Bash(Start-Process \"c:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\\\\documents\\\\uiux\\\\uiux_marivshapp\\\\Component\\\\v1\\\\component_flow.html\")",
+      "PowerShell(Start-Process \"c:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\\\\documents\\\\uiux\\\\uiux_marivshapp\\\\Component\\\\v1\\\\component_flow.html\")",
+      "PowerShell(cd \"c:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\\\\marivshapp\"; dotnet build -f net9.0-windows10.0.19041.0 2>&1 | Where-Object { $_ -match \"error|Error|warning|succeeded|FAILED|Build\" } | Select-Object -Last 15)",
+      "PowerShell($p = Start-Process \"c:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\\\\marivshapp\\\\bin\\\\Debug\\\\net9.0-windows10.0.19041.0\\\\win10-x64\\\\MariVshApp.exe\" -PassThru; Start-Sleep -Seconds 4; if \\($p.HasExited\\) { \"Process exited with code: $\\($p.ExitCode\\)\" } else { \"Running — PID $\\($p.Id\\)\" })",
+      "PowerShell($p = Start-Process \"c:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\\\\marivshapp\\\\bin\\\\Debug\\\\net9.0-windows10.0.19041.0\\\\win10-x64\\\\MariVshApp.exe\" -PassThru; Start-Sleep -Seconds 4; if \\($p.HasExited\\) { \"Exited: $\\($p.ExitCode\\)\" } else { \"Running — PID $\\($p.Id\\)\" })",
+      "PowerShell(cd \"c:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\\\\marivshapp\"; $exe = \"bin\\\\Debug\\\\net9.0-windows10.0.19041.0\\\\win10-x64\\\\MariVshApp.exe\"; if \\(Test-Path $exe\\) { Start-Process $exe; \"Launched\" } else { \"EXE not found at $exe\" })",
+      "PowerShell(Start-Process $exe)",
+      "PowerShell($exe = \"c:\\\\v\\\\v\\\\learn\\\\lv_python\\\\git\\\\mvk_iot_embedded\\\\work\\\\IIoTUI\\\\marivshapp\\\\bin\\\\Debug\\\\net9.0-windows10.0.19041.0\\\\win10-x64\\\\MariVshApp.exe\")",
+      "PowerShell(Get-Process | Where-Object { $_.MainWindowTitle -ne \"\" } | Select-Object Id, ProcessName, MainWindowTitle | Sort-Object StartTime -Descending | Select-Object -First 20)"
     ]
   }
 }
