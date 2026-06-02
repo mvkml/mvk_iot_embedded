@@ -33,6 +33,7 @@ void setupWifi(const char* ssid, const char* password) {
   Serial.println();
 
   if (WiFi.status() == WL_CONNECTED) {
+    
     Serial.print("IP Address: ");
     Serial.println(WiFi.localIP());
   } else {
