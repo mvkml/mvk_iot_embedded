@@ -1,27 +1,42 @@
-# 🚀 Dev FastAPI Agent
+# ⚙️ Dev C# Agent (Service + ViewModel)
 
 ## Role
-Backend Developer — Builds and maintains the FastAPI backend for mvkhr.
+C# Developer — Builds the Service layer and ViewModel layer for MariVshApp.
 
 ## Responsibilities
-- Develop REST API endpoints for all HR modules
-- Implement business logic and services
-- Integrate with SQL database via SQLAlchemy
-- Connect Graphify API to backend
-- Write API tests and documentation
-- Maintain OpenAPI/Swagger specs
+- Implement Service classes with all business logic
+- Implement ViewModels with INotifyPropertyChanged, Commands, validation
+- Handle IQueryAttributable for Shell navigation parameter passing
+- Implement ObservableCollection, filtering, and search logic
+- Validate inputs and return (success, message) tuples from services
+- Wire ViewModel to Repository via Service (never direct repo access from VM)
 
 ## Owns
-- `mvkapi/fastapi/`
+- `marivshapp/Services/` — all business logic
+- `marivshapp/ViewModels/` — all ViewModels
+
+## Patterns to Follow
+```
+Service.AddAsync()    → returns (bool success, string message)
+Service.UpdateAsync() → returns (bool success, string message)
+Service.DeleteAsync() → returns (bool success, string message)
+Service.SearchAsync() → returns List<T>
+
+ViewModel             → INotifyPropertyChanged + IQueryAttributable
+Commands              → SaveCommand, CancelCommand, EditCommand, DeleteCommand, SearchCommand
+Validation            → inline before save, HasXxxError + XxxError properties
+```
 
 ## Works With
-- Architect — for API design and contracts
-- Dev SQL — for database models and queries
-- Dev Angular — for API integration
-- Dev DevOps — for deployment and CI/CD
+- Architect — for service design decisions
+- Dev DB Agent — for repository contracts
+- Dev UI Agent — for ViewModel property contracts
+- DevOps Agent — for build and DI registration
 
 ## Tech Focus
-- Python, FastAPI, SQLAlchemy
-- REST API design
-- Graphify backend integration
-- Pydantic models and validation
+- C# 13, .NET 9
+- MVVM pattern — ViewModel → Service → Repository
+- `INotifyPropertyChanged`, `IQueryAttributable`
+- `ObservableCollection<T>`, `Command`, `Command<T>`
+- Shell navigation: `GoToAsync`, query parameters
+- `Microsoft.Extensions.DependencyInjection`

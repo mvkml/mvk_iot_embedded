@@ -7,7 +7,7 @@ param(
     [int]$Version
 )
 
-$source = "$PSScriptRoot\..\..\..\..\..\marivshapp\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\Data\marivshapp.db3"
+$source = "$env:LOCALAPPDATA\MariVshApp\marivshapp.db3"
 $destDir = "$PSScriptRoot"
 $destFile = Join-Path $destDir "marivshapp_v$Version.db3"
 

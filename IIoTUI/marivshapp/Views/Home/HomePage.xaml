@@ -1,64 +1,244 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:MariVshApp.ViewModels.Home"
              x:Class="MariVshApp.Views.Home.HomePage"
-             Title="Home"
-             BackgroundColor="{AppThemeBinding Light=White, Dark=#1E1E1E}">
+             x:DataType="vm:HomeViewModel"
+             Title="Home">
 
-    <!-- BindingContext is set in code-behind via dependency injection -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- PAGE-LEVEL STYLES                                          -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
 
-    <Grid x:DataType="vm:HomeViewModel">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+            <!-- Sidebar nav item container -->
+            <Style x:Key="NavItem" TargetType="Border">
+                <Setter Property="Stroke" Value="Transparent" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="Padding" Value="20,14" />
+            </Style>
 
-        <!-- Top bar: User name and Logout button in top-right corner -->
-        <VerticalStackLayout
-            Grid.Row="0"
-            HorizontalOptions="End"
-            Padding="20,20,20,0"
-            Spacing="4">
+            <!-- Sidebar nav item label -->
+            <Style x:Key="NavLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
 
-            <!-- User Name -->
-            <Label
-                Text="{Binding UserName}"
-                FontSize="16"
-                FontAttributes="Bold"
-                HorizontalOptions="End"
-                TextColor="{AppThemeBinding Light=#333333, Dark=White}" />
+            <!-- Content section heading -->
+            <Style x:Key="SectionHeading" TargetType="Label">
+                <Setter Property="FontSize" Value="26" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding Light=#333333, Dark=White}" />
+            </Style>
 
-            <!-- Logout Button -->
-            <Button
-                Text="Logout"
-                Command="{Binding LogoutCommand}"
-                FontSize="14"
-                HeightRequest="36"
-                MinimumWidthRequest="80"
-                BackgroundColor="#E53935"
-                TextColor="White"
-                CornerRadius="6"
-                HorizontalOptions="End" />
-        </VerticalStackLayout>
+            <!-- Content section sub-text -->
+            <Style x:Key="SectionSubText" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding Light=#888888, Dark=#AAAAAA}" />
+            </Style>
 
-        <!-- Center: Welcome message -->
-        <VerticalStackLayout
-            Grid.Row="1"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            Spacing="16"
-            Padding="30">
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-            <Label
-                Text="{Binding WelcomeMessage}"
-                FontSize="36"
-                FontAttributes="Bold"
-                HorizontalOptions="Center"
-                HorizontalTextAlignment="Center"
-                TextColor="{AppThemeBinding Light=#6200EE, Dark=#BB86FC}" />
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- ROOT GRID  — Auto header / fill body / Auto footer        -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <Grid RowDefinitions="Auto,*,Auto">
 
-        </VerticalStackLayout>
+        <!-- ─────────────────────────────────────────────────────── -->
+        <!-- HEADER                                                  -->
+        <!-- ─────────────────────────────────────────────────────── -->
+        <Grid Grid.Row="0"
+              BackgroundColor="#6200EE"
+              ColumnDefinitions="*,Auto"
+              Padding="20,14">
+
+            <!-- Left: App title -->
+            <Label Grid.Column="0"
+                   Text="AD IIOT"
+                   Style="{StaticResource SectionHeading}"
+                   TextColor="White"
+                   FontSize="20"
+                   VerticalOptions="Center" />
+
+            <!-- Right: User name + Logout -->
+            <HorizontalStackLayout Grid.Column="1"
+                                   Spacing="16"
+                                   VerticalOptions="Center">
+
+                <Label Text="{Binding UserName}"
+                       FontSize="14"
+                       TextColor="White"
+                       VerticalOptions="Center" />
+
+                <Button Text="Logout"
+                        Command="{Binding LogoutCommand}"
+                        FontSize="13"
+                        BackgroundColor="#E53935"
+                        TextColor="White"
+                        CornerRadius="6"
+                        Padding="14,6" />
+
+            </HorizontalStackLayout>
+        </Grid>
+
+        <!-- ─────────────────────────────────────────────────────── -->
+        <!-- BODY — sidebar (fixed width) + content (fill)          -->
+        <!-- ─────────────────────────────────────────────────────── -->
+        <Grid Grid.Row="1" ColumnDefinitions="200,*">
+
+            <!-- · · · · · · · · · · · · · · · · · · · · · · · · · -->
+            <!-- LEFT SIDEBAR                                        -->
+            <!-- · · · · · · · · · · · · · · · · · · · · · · · · · -->
+            <Border Grid.Column="0"
+                    BackgroundColor="{AppThemeBinding Light=#F8F8F8, Dark=#252525}"
+                    Stroke="{AppThemeBinding Light=#E0E0E0, Dark=#333333}"
+                    StrokeThickness="0,0,1,0">
+
+                <VerticalStackLayout Spacing="0" Padding="0,12,0,0">
+
+                    <!-- Favourites -->
+                    <Border Style="{StaticResource NavItem}"
+                            BackgroundColor="{Binding FavouritesBg}">
+                        <Label Text="Favourites"
+                               Style="{StaticResource NavLabel}"
+                               TextColor="{Binding FavouritesColor}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ShowFavouritesCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Border>
+
+                    <!-- Projects -->
+                    <Border Style="{StaticResource NavItem}"
+                            BackgroundColor="{Binding ProjectsBg}">
+                        <Label Text="Projects"
+                               Style="{StaticResource NavLabel}"
+                               TextColor="{Binding ProjectsColor}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ShowProjectsCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Border>
+
+                    <!-- Manage -->
+                    <Border Style="{StaticResource NavItem}"
+                            BackgroundColor="{Binding ManageBg}">
+                        <Label Text="Manage"
+                               Style="{StaticResource NavLabel}"
+                               TextColor="{Binding ManageColor}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ShowManageCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Border>
+
+                    <!-- User Info -->
+                    <Border Style="{StaticResource NavItem}"
+                            BackgroundColor="{Binding UserInfoBg}">
+                        <Label Text="User Info"
+                               Style="{StaticResource NavLabel}"
+                               TextColor="{Binding UserInfoColor}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ShowUserInfoCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Border>
+
+                    <!-- Divider (admin only) -->
+                    <BoxView HeightRequest="1"
+                             Margin="16,8"
+                             BackgroundColor="{AppThemeBinding Light=#E0E0E0, Dark=#444444}"
+                             IsVisible="{Binding IsAdmin}" />
+
+                    <!-- Admin link (admin only) -->
+                    <Border Style="{StaticResource NavItem}"
+                            BackgroundColor="Transparent"
+                            IsVisible="{Binding IsAdmin}">
+                        <Label Text="Admin"
+                               Style="{StaticResource NavLabel}"
+                               TextColor="#E53935">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GoToAdminCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Border>
+
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- · · · · · · · · · · · · · · · · · · · · · · · · · -->
+            <!-- CONTENT AREA                                        -->
+            <!-- · · · · · · · · · · · · · · · · · · · · · · · · · -->
+            <Grid Grid.Column="1"
+                  BackgroundColor="{AppThemeBinding Light=White, Dark=#1E1E1E}"
+                  Padding="28,24">
+
+                <!-- Favourites view -->
+                <VerticalStackLayout IsVisible="{Binding IsFavouritesVisible}"
+                                     VerticalOptions="Start"
+                                     Spacing="8">
+                    <Label Text="Favourites" Style="{StaticResource SectionHeading}" />
+                    <Label Text="Your pinned rooms and components will appear here."
+                           Style="{StaticResource SectionSubText}" />
+                </VerticalStackLayout>
+
+                <!-- Projects view -->
+                <VerticalStackLayout IsVisible="{Binding IsProjectsVisible}"
+                                     VerticalOptions="Start"
+                                     Spacing="8">
+                    <Label Text="Projects" Style="{StaticResource SectionHeading}" />
+                    <Label Text="Your IoT projects will appear here."
+                           Style="{StaticResource SectionSubText}" />
+                </VerticalStackLayout>
+
+                <!-- Manage view -->
+                <VerticalStackLayout IsVisible="{Binding IsManageVisible}"
+                                     VerticalOptions="Start"
+                                     Spacing="8">
+                    <Label Text="Manage" Style="{StaticResource SectionHeading}" />
+                    <Label Text="Device and component management will appear here."
+                           Style="{StaticResource SectionSubText}" />
+                </VerticalStackLayout>
+
+                <!-- User Info view -->
+                <VerticalStackLayout IsVisible="{Binding IsUserInfoVisible}"
+                                     VerticalOptions="Start"
+                                     Spacing="8">
+                    <Label Text="User Info" Style="{StaticResource SectionHeading}" />
+                    <Label Text="{Binding UserName, StringFormat='Logged in as: {0}'}"
+                           Style="{StaticResource SectionSubText}" />
+                </VerticalStackLayout>
+
+            </Grid>
+
+        </Grid>
+
+        <!-- ─────────────────────────────────────────────────────── -->
+        <!-- FOOTER                                                  -->
+        <!-- ─────────────────────────────────────────────────────── -->
+        <Grid Grid.Row="2"
+              BackgroundColor="{AppThemeBinding Light=#F0F0F0, Dark=#1A1A1A}"
+              ColumnDefinitions="*,Auto"
+              Padding="20,8">
+
+            <Label Grid.Column="0"
+                   Text="AD IIOT v1.0.0"
+                   FontSize="11"
+                   TextColor="{AppThemeBinding Light=#999999, Dark=#666666}"
+                   VerticalOptions="Center" />
+
+            <Label Grid.Column="1"
+                   Text="Online"
+                   FontSize="11"
+                   TextColor="#4CAF50"
+                   VerticalOptions="Center" />
+
+        </Grid>
 
     </Grid>
 

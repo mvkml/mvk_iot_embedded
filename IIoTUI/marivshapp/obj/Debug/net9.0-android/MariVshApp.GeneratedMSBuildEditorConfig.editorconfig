@@ -54,11 +54,137 @@ build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.Admin.Adm
 build_metadata.AdditionalFiles.TargetPath = Views\Admin\AdminPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\Admin\AdminPage.xaml
 
+[C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/AppImage/AppImageListPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.AppImage.AppImageListPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\AppImage\AppImageListPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\AppImage\AppImageListPage.xaml
+
+[C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/AppImage/AppImagePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.AppImage.AppImagePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\AppImage\AppImagePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\AppImage\AppImagePage.xaml
+
+[C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/AppImage/ManageImagesPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.AppImage.ManageImagesPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\AppImage\ManageImagesPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\AppImage\ManageImagesPage.xaml
+
+[C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/Category/CategoryListPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.Category.CategoryListPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Category\CategoryListPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Category\CategoryListPage.xaml
+
+[C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/Category/ManageCategoriesPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.Category.ManageCategoriesPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Category\ManageCategoriesPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Category\ManageCategoriesPage.xaml
+
+[C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/Category/ManageCategoryPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.Category.ManageCategoryPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Category\ManageCategoryPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Category\ManageCategoryPage.xaml
+
+[C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/ComponentGroup/ComponentGroupListPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.ComponentGroup.ComponentGroupListPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\ComponentGroup\ComponentGroupListPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\ComponentGroup\ComponentGroupListPage.xaml
+
+[C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/ComponentGroup/ManageComponentGroupPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.ComponentGroup.ManageComponentGroupPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\ComponentGroup\ManageComponentGroupPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\ComponentGroup\ManageComponentGroupPage.xaml
+
+[C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/ComponentType/ComponentTypePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.ComponentType.ComponentTypePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\ComponentType\ComponentTypePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\ComponentType\ComponentTypePage.xaml
+
+[C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/ComponentType/ManageComponentTypePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.ComponentType.ManageComponentTypePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\ComponentType\ManageComponentTypePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\ComponentType\ManageComponentTypePage.xaml
+
+[C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/Component/ComponentListPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.Component.ComponentListPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Component\ComponentListPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Component\ComponentListPage.xaml
+
+[C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/Component/ManageComponentPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.Component.ManageComponentPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Component\ManageComponentPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Component\ManageComponentPage.xaml
+
 [C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/Home/HomePage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.Home.HomePage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\Home\HomePage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\Home\HomePage.xaml
+
+[C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/Manage/ItemPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.Manage.ItemPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Manage\ItemPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Manage\ItemPage.xaml
+
+[C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/Manage/ManagePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.Manage.ManagePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Manage\ManagePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Manage\ManagePage.xaml
+
+[C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/Project/ManageProjectsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.Project.ManageProjectsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Project\ManageProjectsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Project\ManageProjectsPage.xaml
+
+[C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/Project/ProjectListPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.Project.ProjectListPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Project\ProjectListPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Project\ProjectListPage.xaml
+
+[C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/Project/ProjectPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.Project.ProjectPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Project\ProjectPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Project\ProjectPage.xaml
+
+[C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/Site/ManageSitePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.Site.ManageSitePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Site\ManageSitePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Site\ManageSitePage.xaml
+
+[C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/Site/SiteListPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.Site.SiteListPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Site\SiteListPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Site\SiteListPage.xaml
+
+[C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/Subsite/ManageSubsitePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.Subsite.ManageSubsitePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Subsite\ManageSubsitePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Subsite\ManageSubsitePage.xaml
+
+[C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/Subsite/SubsiteListPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MariVshApp.Views.Subsite.SubsiteListPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Subsite\SubsiteListPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Subsite\SubsiteListPage.xaml
 
 [C:/v/v/learn/lv_python/git/mvk_iot_embedded/work/IIoTUI/marivshapp/Views/UserAccount/LoginPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml

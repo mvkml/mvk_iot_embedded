@@ -2,7 +2,7 @@
 
 **Owner:** Dev SQLite Agent  
 **Reviewed By:** Architect Agent  
-**Last Updated:** 2026-05-17  
+**Last Updated:** 2026-05-20  
 **Phase:** 1 — SQLite (Active)
 
 ---
@@ -15,10 +15,12 @@ UserType
    │  TypeId (FK)
    ▼
 UserAccount
+
+ManageItem   (standalone — no FK relations in v1)
 ```
 
 One `UserType` can have many `UserAccount` rows.  
-Every `UserAccount` must have a valid `TypeId`.
+`ManageItem` is a standalone table — represents navigation entries in the Manage page.
 
 ---
 
@@ -125,6 +127,43 @@ MauiProgram.cs            → Registers DatabaseService as singleton via DI
 ```csharp
 builder.Services.AddSingleton<DatabaseService>();
 ```
+
+---
+
+### ManageItem
+
+| Column | Type | Constraints | Description |
+|--------|------|-------------|-------------|
+| Id | INTEGER | PK, AutoIncrement | Auto-generated SQLite row key |
+| ItemId | INTEGER | | User-provided identifier — generic, maps to a future entity |
+| Name | TEXT | | Display name — e.g. "Projects", "Components" |
+| Description | TEXT | | Optional description |
+| NavigateUrl | TEXT | | Shell route name for tap-to-navigate (e.g. `ProjectListPage`) |
+| ImageUrl | TEXT | | Optional image or icon URL |
+| IsActive | INTEGER | | 1 = active, 0 = inactive |
+| CreatedDate | TEXT | | Set automatically on insert |
+| UpdatedDate | TEXT | | Set automatically on insert and update |
+
+**Notes:**
+- `ManageItem` is the generic navigation/menu entry for the Manage page
+- `ItemId` is user-provided and generic — intended to link to a future specific entity
+- No FK constraints in v1 — relations will be added as hierarchy is built
+- Managed by: `ManageItemRepository` → `ManageItemService` → `ManageViewModel` / `ItemViewModel`
+
+---
+
+## ComponentType
+
+| Column | Type | Attributes | Notes |
+|--------|------|------------|-------|
+| TypeId | int | [PrimaryKey] | 1=Switch, 2=Monitor, 3=InfraRed, 4=Alarm |
+| Name | string | | Display name |
+| Description | string | | |
+| IsActive | bool | | Default true |
+| CreatedDate | DateTime | | |
+| UpdatedDate | DateTime | | |
+
+**Seeded on first run — not user-managed.**
 
 ---
 

@@ -4,78 +4,106 @@ using System.Windows.Input;
 
 namespace MariVshApp.ViewModels.Home;
 
-/// <summary>
-/// ViewModel for the Home Page.
-/// Displays user name and welcome message, handles logout.
-/// </summary>
+public enum HomeSection { Favourites, Projects, Manage, UserInfo }
+
 public class HomeViewModel : INotifyPropertyChanged, IQueryAttributable
 {
-    private string _userName = string.Empty;
-    private string _welcomeMessage = string.Empty;
+    private static readonly Color ActiveBg = Color.FromArgb("#EDE7F6");
+    private static readonly Color InactiveBg = Colors.Transparent;
+    private static readonly Color ActiveColor = Color.FromArgb("#6200EE");
+    private static readonly Color InactiveColor = Colors.White;
 
-    /// <summary>
-    /// The logged-in user's full name, shown in the top-right corner.
-    /// </summary>
+    private string _userName = string.Empty;
+    private bool _isAdmin;
+    private HomeSection _activeSection = HomeSection.Favourites;
+
     public string UserName
     {
         get => _userName;
-        set
-        {
-            _userName = value;
-            OnPropertyChanged();
-        }
+        set { _userName = value; OnPropertyChanged(); }
     }
 
-    /// <summary>
-    /// Welcome message shown in the center of the page.
-    /// </summary>
-    public string WelcomeMessage
+    public bool IsAdmin
     {
-        get => _welcomeMessage;
+        get => _isAdmin;
+        set { _isAdmin = value; OnPropertyChanged(); }
+    }
+
+    public HomeSection ActiveSection
+    {
+        get => _activeSection;
         set
         {
-            _welcomeMessage = value;
+            _activeSection = value;
             OnPropertyChanged();
+            OnPropertyChanged(nameof(IsFavouritesVisible));
+            OnPropertyChanged(nameof(IsProjectsVisible));
+            OnPropertyChanged(nameof(IsManageVisible));
+            OnPropertyChanged(nameof(IsUserInfoVisible));
+            OnPropertyChanged(nameof(FavouritesBg));
+            OnPropertyChanged(nameof(ProjectsBg));
+            OnPropertyChanged(nameof(ManageBg));
+            OnPropertyChanged(nameof(UserInfoBg));
+            OnPropertyChanged(nameof(FavouritesColor));
+            OnPropertyChanged(nameof(ProjectsColor));
+            OnPropertyChanged(nameof(ManageColor));
+            OnPropertyChanged(nameof(UserInfoColor));
         }
     }
 
-    /// <summary>
-    /// Command bound to the Logout button.
-    /// </summary>
+    // Content visibility
+    public bool IsFavouritesVisible => ActiveSection == HomeSection.Favourites;
+    public bool IsProjectsVisible => ActiveSection == HomeSection.Projects;
+    public bool IsManageVisible => ActiveSection == HomeSection.Manage;
+    public bool IsUserInfoVisible => ActiveSection == HomeSection.UserInfo;
+
+    // Sidebar active highlight — background
+    public Color FavouritesBg => ActiveSection == HomeSection.Favourites ? ActiveBg : InactiveBg;
+    public Color ProjectsBg => ActiveSection == HomeSection.Projects ? ActiveBg : InactiveBg;
+    public Color ManageBg => ActiveSection == HomeSection.Manage ? ActiveBg : InactiveBg;
+    public Color UserInfoBg => ActiveSection == HomeSection.UserInfo ? ActiveBg : InactiveBg;
+
+    // Sidebar active highlight — text color
+    public Color FavouritesColor => ActiveSection == HomeSection.Favourites ? ActiveColor : InactiveColor;
+    public Color ProjectsColor => ActiveSection == HomeSection.Projects ? ActiveColor : InactiveColor;
+    public Color ManageColor => ActiveSection == HomeSection.Manage ? ActiveColor : InactiveColor;
+    public Color UserInfoColor => ActiveSection == HomeSection.UserInfo ? ActiveColor : InactiveColor;
+
+    public ICommand ShowFavouritesCommand { get; }
+    public ICommand ShowProjectsCommand { get; }
+    public ICommand ShowManageCommand { get; }
+    public ICommand ShowUserInfoCommand { get; }
+    public ICommand GoToAdminCommand { get; }
     public ICommand LogoutCommand { get; }
 
     public HomeViewModel()
     {
-        LogoutCommand = new Command(async () => await OnLogoutAsync());
+        ShowFavouritesCommand = new Command(() => ActiveSection = HomeSection.Favourites);
+        ShowProjectsCommand = new Command(async () =>
+            await Shell.Current.GoToAsync(
+                $"{nameof(Views.Project.ProjectsPage)}?userName={Uri.EscapeDataString(_userName)}&userTypeId={(_isAdmin ? 2 : 1)}"));
+        ShowManageCommand = new Command(async () =>
+            await Shell.Current.GoToAsync(
+                $"{nameof(Views.Manage.ManagePage)}?userName={Uri.EscapeDataString(_userName)}&userTypeId={(_isAdmin ? 2 : 1)}"));
+        ShowUserInfoCommand = new Command(() => ActiveSection = HomeSection.UserInfo);
+        GoToAdminCommand = new Command(async () =>
+            await Shell.Current.GoToAsync(nameof(Views.Admin.AdminPage)));
+        LogoutCommand = new Command(async () =>
+            await Shell.Current.GoToAsync("//LoginPage"));
     }
 
-    /// <summary>
-    /// Receives query parameters from Shell navigation.
-    /// Expects "userName" parameter passed from LoginViewModel.
-    /// </summary>
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        if (query.TryGetValue("userName", out var name) && name is string userName)
-        {
-            UserName = userName;
-            WelcomeMessage = $"Welcome, {userName}!";
-        }
+        if (query.TryGetValue("userName", out var name))
+            UserName = Uri.UnescapeDataString(name?.ToString() ?? string.Empty);
+
+        if (query.TryGetValue("userTypeId", out var typeId) &&
+            int.TryParse(typeId?.ToString(), out var id))
+            IsAdmin = id == 2;
     }
 
-    /// <summary>
-    /// Handles logout — navigates back to the Login page.
-    /// </summary>
-    private async Task OnLogoutAsync()
-    {
-        // Navigate back to root (Login page) and clear the navigation stack
-        await Shell.Current.GoToAsync("//LoginPage");
-    }
-
-    // INotifyPropertyChanged implementation
     public event PropertyChangedEventHandler? PropertyChanged;
 
     protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
+        => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 }

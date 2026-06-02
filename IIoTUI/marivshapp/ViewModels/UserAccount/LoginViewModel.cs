@@ -77,7 +77,7 @@ public class LoginViewModel : INotifyPropertyChanged
         Message = message;
 
         if (success && user is not null)
-            await Shell.Current.GoToAsync($"{nameof(Views.Home.HomePage)}?userName={Uri.EscapeDataString(user.Name)}");
+            await NavigateAfterLogin(user.Name, user.UserTypeId);
     }
 
     private async Task OnLoginByPinAsync()
@@ -95,7 +95,13 @@ public class LoginViewModel : INotifyPropertyChanged
         Message = message;
 
         if (success && user is not null)
-            await Shell.Current.GoToAsync($"{nameof(Views.Home.HomePage)}?userName={Uri.EscapeDataString(user.Name)}");
+            await NavigateAfterLogin(user.Name, user.UserTypeId);
+    }
+
+    private static async Task NavigateAfterLogin(string userName, int userTypeId)
+    {
+        await Shell.Current.GoToAsync(
+            $"{nameof(Views.Home.HomePage)}?userName={Uri.EscapeDataString(userName)}&userTypeId={userTypeId}");
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

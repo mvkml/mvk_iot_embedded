@@ -3,70 +3,109 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:MariVshApp.ViewModels.Admin"
              x:Class="MariVshApp.Views.Admin.AdminPage"
-             Title="Admin"
-             BackgroundColor="{AppThemeBinding Light=White, Dark=#1E1E1E}">
+             x:DataType="vm:AdminViewModel"
+             Title="Admin">
 
-    <!-- BindingContext is set in code-behind via dependency injection -->
+    <Grid RowDefinitions="Auto,*,Auto">
 
-    <Grid x:DataType="vm:AdminViewModel">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        <!-- HEADER -->
+        <Grid Grid.Row="0" BackgroundColor="#6200EE" ColumnDefinitions="*,Auto" Padding="20,14">
+            <Label Grid.Column="0" Text="AD IIOT — Admin" FontSize="20" FontAttributes="Bold"
+                   TextColor="White" VerticalOptions="Center" />
+            <HorizontalStackLayout Grid.Column="1" Spacing="16" VerticalOptions="Center">
+                <Label Text="{Binding UserName}" FontSize="13" TextColor="#D9FFFFFF"
+                       VerticalOptions="Center" />
+                <Button Text="Logout" Command="{Binding LogoutCommand}"
+                        FontSize="13" BackgroundColor="#E53935" TextColor="White"
+                        CornerRadius="6" Padding="14,6" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+        </Grid>
 
-        <!-- Top bar: User name and Logout button in top-right corner -->
-        <VerticalStackLayout
-            Grid.Row="0"
-            HorizontalOptions="End"
-            Padding="20,20,20,0"
-            Spacing="4">
+        <!-- BODY: Left Sidebar + Content Area -->
+        <Grid Grid.Row="1" ColumnDefinitions="200,*" BackgroundColor="#1E1E1E">
 
-            <!-- User Name -->
-            <Label
-                Text="{Binding UserName}"
-                FontSize="16"
-                FontAttributes="Bold"
-                HorizontalOptions="End"
-                TextColor="{AppThemeBinding Light=#333333, Dark=White}" />
+            <!-- LEFT SIDEBAR -->
+            <Border Grid.Column="0" BackgroundColor="#141414"
+                    Stroke="#2A2A2A" StrokeThickness="1">
+                <VerticalStackLayout Spacing="0">
 
-            <!-- Logout Button -->
-            <Button
-                Text="Logout"
-                Command="{Binding LogoutCommand}"
-                FontSize="14"
-                HeightRequest="36"
-                MinimumWidthRequest="80"
-                BackgroundColor="#E53935"
-                TextColor="White"
-                CornerRadius="6"
-                HorizontalOptions="End" />
-        </VerticalStackLayout>
+                    <!-- Sidebar Header -->
+                    <Label Text="ADMIN PANEL" FontSize="10" FontAttributes="Bold"
+                           TextColor="#666666"
+                           Padding="20,20,20,12" />
 
-        <!-- Center: Admin Dashboard title and welcome message -->
-        <VerticalStackLayout
-            Grid.Row="1"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            Spacing="16"
-            Padding="30">
+                    <!-- Dashboard -->
+                    <Border BackgroundColor="{Binding DashboardBg}"
+                            Stroke="Transparent" StrokeThickness="0">
+                        <Button Text="🏠  Dashboard"
+                                Command="{Binding ShowDashboardCommand}"
+                                FontSize="14" TextColor="{Binding DashboardFg}"
+                                BackgroundColor="Transparent"
+                                HorizontalOptions="Fill"
+                                Padding="20,12" BorderColor="Transparent" BorderWidth="0" />
+                    </Border>
 
-            <Label
-                Text="Admin Dashboard"
-                FontSize="36"
-                FontAttributes="Bold"
-                HorizontalOptions="Center"
-                HorizontalTextAlignment="Center"
-                TextColor="{AppThemeBinding Light=#333333, Dark=White}" />
+                    <!-- IoT Hub -->
+                    <Border BackgroundColor="{Binding IotHubBg}"
+                            Stroke="Transparent" StrokeThickness="0">
+                        <Button Text="📡  IoT Hub"
+                                Command="{Binding ShowIotHubCommand}"
+                                FontSize="14" TextColor="{Binding IotHubFg}"
+                                BackgroundColor="Transparent"
+                                HorizontalOptions="Fill"
+                                Padding="20,12" BorderColor="Transparent" BorderWidth="0" />
+                    </Border>
 
-            <Label
-                Text="{Binding WelcomeMessage}"
-                FontSize="20"
-                HorizontalOptions="Center"
-                HorizontalTextAlignment="Center"
-                TextColor="{AppThemeBinding Light=#6200EE, Dark=#BB86FC}" />
+                    <!-- Divider -->
+                    <BoxView HeightRequest="1" BackgroundColor="#2A2A2A" Margin="0,8" />
 
-        </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- CONTENT AREA -->
+            <ScrollView Grid.Column="1" BackgroundColor="#1E1E1E">
+
+                <!-- Dashboard Content -->
+                <VerticalStackLayout IsVisible="{Binding IsDashboardVisible}"
+                                     Padding="36,32" Spacing="16">
+                    <Label Text="Dashboard" FontSize="24" FontAttributes="Bold"
+                           TextColor="White" />
+                    <Label Text="Welcome to the Admin Dashboard." FontSize="14"
+                           TextColor="#AAAAAA" />
+                    <Label Text="{Binding WelcomeMessage}" FontSize="14"
+                           TextColor="#BB86FC" />
+                </VerticalStackLayout>
+
+                <!-- IoT Hub Content -->
+                <VerticalStackLayout IsVisible="{Binding IsIotHubVisible}"
+                                     Padding="36,32" Spacing="16">
+                    <Label Text="📡  IoT Hub" FontSize="24" FontAttributes="Bold"
+                           TextColor="White" />
+                    <Label Text="Manage and monitor IoT Hub devices." FontSize="14"
+                           TextColor="#AAAAAA" />
+
+                    <Border BackgroundColor="#2A2A2A" Stroke="#383838" StrokeThickness="1"
+                            StrokeShape="RoundRectangle 10" Padding="24" Margin="0,8,0,0">
+                        <VerticalStackLayout Spacing="12">
+                            <Label Text="Coming Soon" FontSize="16" FontAttributes="Bold"
+                                   TextColor="#BB86FC" />
+                            <Label Text="IoT Hub management — register hubs, sync component JSON, monitor connection status."
+                                   FontSize="13" TextColor="#888888" />
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+
+            </ScrollView>
+
+        </Grid>
+
+        <!-- FOOTER -->
+        <Grid Grid.Row="2" BackgroundColor="#1A1A1A" ColumnDefinitions="*,Auto" Padding="20,8">
+            <Label Grid.Column="0" Text="AD IIOT v1.0.0" FontSize="11"
+                   TextColor="#666666" VerticalOptions="Center" />
+            <Label Grid.Column="1" Text="Online" FontSize="11"
+                   TextColor="#4CAF50" VerticalOptions="Center" />
+        </Grid>
 
     </Grid>
-
 </ContentPage>

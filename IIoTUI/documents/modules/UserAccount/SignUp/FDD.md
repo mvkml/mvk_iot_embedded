@@ -31,7 +31,7 @@ Taps "Sign Up" button
                     │
                     ├─── User ID already exists → Show error message
                     │
-                    └─── User ID is unique → Save to DB → Show success alert → Stay on page
+                    └─── User ID is unique → Save to DB → Show success message + "Go to Login →" link
 ```
 
 ---
@@ -45,6 +45,8 @@ Taps "Sign Up" button
 | Password | ✅ | Password (hidden) | Login password |
 | Confirm Password | ✅ | Password (hidden) | Must match Password |
 | Account Type | ✅ | Picker | Selected from UserType list (User / Admin) |
+| PIN | ✅ | Numeric (hidden, max 4) | 4-digit quick-access PIN for PIN login |
+| Confirm PIN | ✅ | Numeric (hidden, max 4) | Must match PIN |
 | Description | ☐ | Text | Optional — user bio or note |
 
 ---
@@ -58,6 +60,9 @@ Taps "Sign Up" button
 | Name | Not empty | "Please enter your name." |
 | Password | Not empty | "Please enter a password." |
 | Confirm Password | Must match Password | "Passwords do not match." |
+| PIN | Exactly 4 digits, all numeric | "PIN must be exactly 4 digits." |
+| Confirm PIN | Must match PIN | "PINs do not match." |
+| PIN | Must be unique in DB | "PIN already in use. Please choose a different PIN." |
 | Account Type | Must be selected | "Please select an account type." |
 
 ---
@@ -67,8 +72,8 @@ Taps "Sign Up" button
 - Record saved to `UserAccount` table
 - `IsActive` set to `true`
 - `CreatedDate` and `UpdatedDate` set to current timestamp
-- Success alert displayed: *"Your account has been created successfully!"*
-- Form stays on Sign Up page (user navigates back manually)
+- Success message displayed in green: *"Sign-up successful!"*
+- "Go to Login →" link appears below the message — tapping it navigates to Login page
 
 ---
 
@@ -86,6 +91,7 @@ Taps "Sign Up" button
 | UserId | From form |
 | Name | From form |
 | Password | From form (plain text — ADR 003 pending) |
+| Pin | From form (4-digit string) |
 | Description | From form (empty string if blank) |
 | IsActive | true |
 | UserTypeId | From selected UserType |
