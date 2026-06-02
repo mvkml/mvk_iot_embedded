@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AD IIOT — Work Status</title>
+  <style>
+
+    /* ── Reset ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #1E1E1E;
+      color: #DDDDDD;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: #6200EE;
+      padding: 16px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header h1 { color: #fff; font-size: 22px; font-weight: 700; letter-spacing: 0.5px; }
+    .header p  { color: rgba(255,255,255,0.75); font-size: 12px; margin-top: 3px; }
+    .header-right { display: flex; align-items: center; gap: 20px; }
+    .header-date  { color: rgba(255,255,255,0.8); font-size: 12px; }
+    .home-link {
+      color: rgba(255,255,255,0.85);
+      font-size: 12px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.4);
+      padding: 4px 12px;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .home-link:hover { background: rgba(255,255,255,0.15); }
+
+    /* ── Main ── */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 36px 48px;
+    }
+
+    /* Current task label */
+    .task-label {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .task-label .tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #AAAAAA;
+      margin-bottom: 10px;
+    }
+    .task-label .task-name   { font-size: 24px; font-weight: 700; color: #fff; }
+    .task-label .task-module { font-size: 13px; color: #AAAAAA; margin-top: 6px; }
+
+    /* ── 3 Main Blocks ── */
+    .blocks {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 28px;
+    }
+
+    .connector { padding: 0 16px; }
+    .connector-arrow { font-size: 28px; color: #333; }
+
+    .block {
+      width: 190px;
+      height: 210px;
+      border-radius: 16px;
+      border: 2px solid transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .block .block-icon  { font-size: 60px; line-height: 1; }
+    .block .block-label { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+    .block .block-sub   { font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; position: absolute; bottom: 16px; opacity: 0.6; }
+
+    /* Active */
+    .block.active {
+      background: #1A0540;
+      border-color: #6200EE;
+      animation: pulse-purple 2.4s ease-in-out infinite;
+    }
+    .block.active .block-label { color: #BB86FC; }
+    .block.active .block-sub   { color: #BB86FC; }
+
+    /* Disabled */
+    .block.disabled {
+      background: #1C1C1C;
+      border-color: #272727;
+      opacity: 0.35;
+    }
+    .block.disabled .block-icon  { filter: grayscale(1); }
+    .block.disabled .block-label { color: #444; }
+    .block.disabled .block-sub   { color: #444; }
+
+    /* Completed */
+    .block.completed {
+      background: #0C2318;
+      border-color: #4CAF50;
+      box-shadow: 0 0 22px rgba(76,175,80,0.28);
+    }
+    .block.completed .block-label { color: #4CAF50; }
+    .block.completed .block-sub   { color: #4CAF50; }
+
+    /* ── Icon Strip ── */
+    .icon-strip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 36px;
+      padding: 14px 24px;
+      background: #222222;
+      border: 1px solid #2A2A2A;
+      border-radius: 40px;
+    }
+
+    .strip-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #444;
+      padding-right: 10px;
+      border-right: 1px solid #2E2E2E;
+      margin-right: 4px;
+      white-space: nowrap;
+    }
+
+    /* Each icon in the strip */
+    .strip-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      transition: all 0.3s ease;
+      min-width: 64px;
+    }
+    .strip-icon .si-icon  { font-size: 26px; line-height: 1; }
+    .strip-icon .si-label { font-size: 9px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; }
+
+    /* Strip icon states */
+    .strip-icon.active {
+      background: #1A0540;
+      border-color: #6200EE;
+      animation: pulse-purple 2.4s ease-in-out infinite;
+    }
+    .strip-icon.active .si-label { color: #BB86FC; }
+
+    .strip-icon.disabled {
+      background: transparent;
+      border-color: transparent;
+      opacity: 0.3;
+    }
+    .strip-icon.disabled .si-icon  { filter: grayscale(1); }
+    .strip-icon.disabled .si-label { color: #444; }
+
+    .strip-icon.completed {
+      background: #0C2318;
+      border-color: #4CAF50;
+    }
+    .strip-icon.completed .si-label { color: #4CAF50; }
+
+    /* Vertical divider between strip groups */
+    .strip-divider {
+      width: 1px;
+      height: 36px;
+      background: #2E2E2E;
+      margin: 0 8px;
+      flex-shrink: 0;
+    }
+
+    /* ── Pulse animations ── */
+    @keyframes pulse-purple {
+      0%   { box-shadow: 0 0 10px rgba(98,0,238,0.5);  }
+      50%  { box-shadow: 0 0 22px rgba(98,0,238,0.75); }
+      100% { box-shadow: 0 0 10px rgba(98,0,238,0.5);  }
+    }
+
+    /* ── Task List Grid ── */
+    .task-section {
+      width: 100%;
+      max-width: 820px;
+    }
+
+    .task-section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #AAAAAA;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #2A2A2A;
+    }
+
+    .task-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .task-row {
+      display: grid;
+      grid-template-columns: 32px 1fr auto;
+      align-items: center;
+      gap: 14px;
+      background: #242424;
+      border: 1px solid #2E2E2E;
+      border-radius: 8px;
+      padding: 10px 16px;
+      transition: background 0.2s;
+    }
+    .task-row:hover { background: #292929; }
+
+    .task-num  { font-size: 11px; font-weight: 700; color: #555; text-align: center; }
+    .task-text { font-size: 13px; color: #DDDDDD; line-height: 1.4; }
+
+    .task-status {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .task-status.input      { color: #BB86FC; background: #1E0A3C; border: 1px solid #6200EE; }
+    .task-status.dev        { color: #64B5F6; background: #0A1A2E; border: 1px solid #1565C0; }
+    .task-status.done       { color: #4CAF50; background: #0C2318; border: 1px solid #4CAF50; }
+    .task-status.inprogress { color: #FFB300; background: #1E1500; border: 1px solid #FFB300; }
+
+    /* ── Activity Banner ── */
+    .activity-banner {
+      width: 100%;
+      padding: 11px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    /* Working state — purple */
+    .activity-banner.working {
+      background: #0E0225;
+      border-bottom: 1px solid #6200EE;
+      color: #BB86FC;
+    }
+
+    /* Done state — green */
+    .activity-banner.done {
+      background: #081A10;
+      border-bottom: 1px solid #4CAF50;
+      color: #4CAF50;
+    }
+
+    /* Phase text — slightly brighter, separated by pipes */
+    .banner-phase {
+      color: #DDDDDD;
+      padding: 0 10px;
+      border-left: 1px solid #3A0080;
+      border-right: 1px solid #3A0080;
+    }
+    .activity-banner.done .banner-phase {
+      color: #4CAF50;
+      border-color: #1E5C30;
+    }
+
+    /* Three blinking dots */
+    .banner-dots {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: 2px;
+    }
+    .banner-dots span {
+      display: block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #6200EE;
+      opacity: 0.15;
+      animation: dot-pulse 1.2s ease-in-out infinite;
+    }
+    .banner-dots span:nth-child(1) { animation-delay: 0s;    }
+    .banner-dots span:nth-child(2) { animation-delay: 0.2s;  }
+    .banner-dots span:nth-child(3) { animation-delay: 0.4s;  }
+
+    @keyframes dot-pulse {
+      0%, 70%, 100% { opacity: 0.15; transform: scale(1);    }
+      35%           { opacity: 1;    transform: scale(1.25); }
+    }
+
+    /* Hide dots when work is done */
+    .activity-banner.done .banner-dots { display: none; }
+
+    /* ── Footer ── */
+    .footer {
+      background: #1A1A1A;
+      padding: 12px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer span      { font-size: 11px; color: #555; }
+    .footer .live-dot { color: #4CAF50; font-size: 11px; }
+
+  </style>
+</head>
+<body>
+
+  <!-- ═══ HEADER ═══ -->
+  <div class="header">
+    <div>
+      <h1>AD IIOT — Work Status</h1>
+      <p>MariVshApp &nbsp;·&nbsp; Live Development Status</p>
+    </div>
+    <div class="header-right">
+      <span class="header-date">2026-05-27</span>
+      <a class="home-link" href="home.html">← Home</a>
+    </div>
+  </div>
+
+  <!-- ═══ ACTIVITY BANNER ═══
+       State:  class="activity-banner working"  →  purple + animated dots (work in progress)
+               class="activity-banner done"     →  green  + no dots       (all complete)
+       Phase:  Edit the .banner-phase text when the active stage changes
+               "Input Phase" | "Dev Phase" | "All Stages Complete"
+  ══════════════════════════════════════════════════════════════════════ -->
+  <div class="activity-banner done">
+    <span>✅</span>
+    <span>IoT Hub CRUD Module — All Layers Complete</span>
+    <span class="banner-phase">Build 0 Errors</span>
+  </div>
+
+  <!-- ═══ MAIN ═══ -->
+  <div class="main">
+
+    <!-- Currently working on -->
+    <div class="task-label">
+      <div class="tag">Currently Working On</div>
+      <div class="task-name">IoT Hub CRUD Module</div>
+      <div class="task-module">Hub Module &nbsp;·&nbsp; Sprint 3</div>
+    </div>
+
+    <!-- ── 3 Main Stage Blocks ── -->
+    <div class="blocks">
+
+      <div class="block active">
+        <div class="block-icon">📥</div>
+        <div class="block-label">Input</div>
+        <div class="block-sub">Requirements</div>
+      </div>
+
+      <div class="connector"><div class="connector-arrow">›</div></div>
+
+      <div class="block disabled">
+        <div class="block-icon">💻</div>
+        <div class="block-label">Dev</div>
+        <div class="block-sub">Development</div>
+      </div>
+
+      <div class="connector"><div class="connector-arrow">›</div></div>
+
+      <div class="block disabled">
+        <div class="block-icon">✅</div>
+        <div class="block-label">Completed</div>
+        <div class="block-sub">Done</div>
+      </div>
+
+    </div>
+
+    <!-- ── Icon Strip (supplementary status) ── -->
+    <!--
+      DEV LAYER ICONS — update these as each layer of the CURRENT MODULE is built:
+        DB  = active → building Model + Repository
+             completed → DB layer done
+        BL  = active → building Service (Business Logic)
+             completed → BL layer done
+        Dev = active → building ViewModel
+             completed → ViewModel done
+        UI  = active → building XAML Views
+             completed → Views done
+      Reset all 4 to disabled when starting a NEW module.
+    -->
+    <div class="icon-strip">
+
+      <div class="strip-label">Also</div>
+
+      <!-- Document icon — disabled for this task -->
+      <div class="strip-icon disabled">
+        <div class="si-icon">📄</div>
+        <div class="si-label">Docs</div>
+      </div>
+
+      <!-- Supplementary statuses -->
+      <div class="strip-icon disabled">
+        <div class="si-icon">🧪</div>
+        <div class="si-label">Test</div>
+      </div>
+
+      <div class="strip-icon disabled">
+        <div class="si-icon">🔍</div>
+        <div class="si-label">Review</div>
+      </div>
+
+      <!-- Divider — separates supplementary from dev-layer icons -->
+      <div class="strip-divider"></div>
+
+      <div class="strip-label">Dev Layer</div>
+
+      <!-- DB layer — completed -->
+      <div class="strip-icon completed">
+        <div class="si-icon">🗄️</div>
+        <div class="si-label">DB</div>
+      </div>
+
+      <!-- BL layer — completed -->
+      <div class="strip-icon completed">
+        <div class="si-icon">⚙️</div>
+        <div class="si-label">BL</div>
+      </div>
+
+      <!-- Dev layer — completed -->
+      <div class="strip-icon completed">
+        <div class="si-icon">🧩</div>
+        <div class="si-label">Dev</div>
+      </div>
+
+      <!-- UI layer — completed -->
+      <div class="strip-icon completed">
+        <div class="si-icon">🎨</div>
+        <div class="si-label">UI</div>
+      </div>
+
+    </div>
+
+    <!-- ── Task List Grid ── -->
+    <!-- TASK LIST — always keep latest 3 tasks only. Drop oldest when adding new. -->
+    <div class="task-section">
+      <div class="task-section-label">📋 &nbsp;Recent Tasks</div>
+      <div class="task-grid">
+
+        <div class="task-row">
+          <div class="task-num">26</div>
+          <div class="task-text">AdminPage redesigned — left sidebar with Dashboard + IoT Hub tabs, tab switching with purple highlight, content area, build 0 errors</div>
+          <div class="task-status done">Done</div>
+        </div>
+
+        <div class="task-row">
+          <div class="task-num">27</div>
+          <div class="task-text">IoT Hub CRUD — Hub model, IHubRepository, HubRepository, HubService (full BL layer)</div>
+          <div class="task-status done">Done</div>
+        </div>
+
+        <div class="task-row">
+          <div class="task-num">28</div>
+          <div class="task-text">IoT Hub CRUD — HubListViewModel, ManageHubViewModel, HubListPage, ManageHubPage, DI + AppShell routes, build 0 errors</div>
+          <div class="task-status done">Done</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="footer">
+    <span>AD IIOT Work Status &nbsp;·&nbsp; v1 &nbsp;·&nbsp; MariVshApp</span>
+    <span class="live-dot">● Live</span>
+  </div>
+
+</body>
+</html>

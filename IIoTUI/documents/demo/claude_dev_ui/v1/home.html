@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AD IIOT — Demo Home</title>
+  <style>
+
+    /* ── Reset ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #1E1E1E;
+      color: #DDDDDD;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: #6200EE;
+      padding: 18px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header h1 { color: #fff; font-size: 22px; font-weight: 700; letter-spacing: 0.5px; }
+    .header p  { color: rgba(255,255,255,0.75); font-size: 12px; margin-top: 4px; }
+    .header-date { color: rgba(255,255,255,0.8); font-size: 12px; }
+
+    /* ── Main ── */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 36px;
+      gap: 40px;
+    }
+
+    /* Heading */
+    .page-heading {
+      text-align: center;
+    }
+    .page-heading .tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #AAAAAA;
+      margin-bottom: 10px;
+    }
+    .page-heading h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .page-heading p {
+      font-size: 13px;
+      color: #AAAAAA;
+      margin-top: 8px;
+    }
+
+    /* ── Nav Cards ── */
+    .nav-cards {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-card {
+      width: 220px;
+      background: #242424;
+      border: 2px solid #2E2E2E;
+      border-radius: 14px;
+      padding: 32px 24px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .nav-card:hover {
+      border-color: #6200EE;
+      background: #1A0540;
+      box-shadow: 0 0 24px rgba(98,0,238,0.35);
+      transform: translateY(-3px);
+    }
+
+    .nav-card .card-icon {
+      font-size: 52px;
+      line-height: 1;
+    }
+    .nav-card .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+    }
+    .nav-card .card-desc {
+      font-size: 11px;
+      color: #AAAAAA;
+      text-align: center;
+      line-height: 1.6;
+    }
+    .nav-card .card-badge {
+      font-size: 10px;
+      font-weight: 700;
+      color: #BB86FC;
+      background: #1E0A3C;
+      border: 1px solid #6200EE;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background: #1A1A1A;
+      padding: 12px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer span      { font-size: 11px; color: #555; }
+    .footer .live-dot { color: #4CAF50; font-size: 11px; }
+
+  </style>
+</head>
+<body>
+
+  <!-- ═══ HEADER ═══ -->
+  <div class="header">
+    <div>
+      <h1>AD IIOT — Demo Home</h1>
+      <p>MariVshApp &nbsp;·&nbsp; Navigation Hub</p>
+    </div>
+    <div class="header-date">2026-05-26</div>
+  </div>
+
+  <!-- ═══ MAIN ═══ -->
+  <div class="main">
+
+    <div class="page-heading">
+      <div class="tag">Select a View</div>
+      <h2>Demo Navigation</h2>
+      <p>Choose a page to open</p>
+    </div>
+
+    <div class="nav-cards">
+
+      <!-- Work Status -->
+      <a class="nav-card" href="work_status.html">
+        <div class="card-icon">🔄</div>
+        <div class="card-title">Work Status</div>
+        <div class="card-desc">Live view of what is currently being worked on — Input · Dev · Completed</div>
+        <div class="card-badge">Live Status</div>
+      </a>
+
+      <!-- Dev Status / Index -->
+      <a class="nav-card" href="index.html">
+        <div class="card-icon">📋</div>
+        <div class="card-title">Dev Status</div>
+        <div class="card-desc">Full list of all features and their stage progress across all sprints</div>
+        <div class="card-badge">Feature Board</div>
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="footer">
+    <span>AD IIOT Demo &nbsp;·&nbsp; v1 &nbsp;·&nbsp; MariVshApp</span>
+    <span class="live-dot">● Live</span>
+  </div>
+
+</body>
+</html>
